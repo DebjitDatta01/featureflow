@@ -9,40 +9,53 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/api/featureflow")
+@RequestMapping("/api/feature-flags")
 @RequiredArgsConstructor
 public class FeatureSwitchController {
 
     private final FeatureService featureService;
 
-    @GetMapping("/myFlagValue")
-    public Boolean getFeatureFlagValue(@RequestParam("id") Long id){
-        return featureService.getFeatureFlagValue(id);
+    @GetMapping("/{id}/value")
+    public ResponseEntity<Boolean> getFeatureFlagValue(@PathVariable Long id){
+        return ResponseEntity.ok(featureService.getFeatureFlagValue(id));
     }
 
-    @GetMapping("/myFlag/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<FeatureFlag> getFeatureFlagById(@PathVariable Long id){
-        return  ResponseEntity.ok(featureService.getFeatureFlag(id).get());
+        return ResponseEntity.ok(featureService.getFeatureFlag(id));
     }
 
-    @GetMapping("/myAllFlags")
+    @GetMapping
     public ResponseEntity<List<FeatureFlag>> getAllFeatureFlags(){
         return ResponseEntity.ok(featureService.getAllFeatureFlags());
     }
 
-    @DeleteMapping("/deleteMyFlag/{id}")
-    public void deleteFeatureFlag(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> deleteFeatureFlag(@PathVariable Long id){
+        FeatureFlag flag = featureService.getFeatureFlag(id);
         featureService.deleteFeatureFlag(id);
+        return ResponseEntity.ok(Map.of(
+            "message", "Feature flag deleted successfully",
+            "id", flag.getId(),
+            "name", flag.getName()
+        ));
     }
 
-    @PostMapping("/createFlag")
-    public void createFeatureFlag(@RequestParam("name") String name){
-        featureService.createFeatureFlag(name);
+    @PostMapping
+    public ResponseEntity<Void> createFeatureFlag(@Valid @RequestBody FeatureFlagRequest request){
+        featureService.createFeatureFlag(request.name(), request.value());
+        return ResponseEntity.status(201).build();
     }
-    @PutMapping("/editMyFlag")
-    public void updateFeatureFlag(@Valid @RequestBody FeatureFlagRequest featureFlagRequest){
-        featureService.updateFeatureFlag(featureFlagRequest.id(), featureFlagRequest.name(), featureFlagRequest.value());
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateFeatureFlag(@PathVariable Long id, @Valid @RequestBody FeatureFlagRequest request){
+        if (request.id() != null && !request.id().equals(id)) {
+            throw new IllegalArgumentException("ID in path (" + id + ") does not match ID in body (" + request.id() + "). ID cannot be changed.");
+        }
+        featureService.updateFeatureFlag(id, request.name(), request.value());
+        return ResponseEntity.ok().build();
     }
 }
