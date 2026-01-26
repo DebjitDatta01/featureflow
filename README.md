@@ -1,6 +1,38 @@
 # FeatureFlow 🚀
 
-**FeatureFlow** is a modern, secure, and developer-friendly Feature Flag Management System. It allows you to decouple feature deployment from code deployment, enabling you to toggle features on/off in real-time without redeploying your application.
+**FeatureFlow** is a robust, distributed **Feature Flag Management System** designed to decouple feature deployment from code releases. It empowers developers to toggle features on/off in real-time, perform canary releases, and manage technical debt without redeploying applications.
+
+Built with a **Microservices Architecture** using **Java 21** and **Spring Boot 3**, FeatureFlow prioritizes security, scalability, and developer experience. It features a secure, stateless authentication system using **JWT**, ensuring strict data isolation where users can only manage their own feature flags.
+
+### 🌟 Key Features
+*   **Real-time Toggling**: Switch features on/off instantly across your entire stack.
+*   **Microservices Design**: Modular architecture separating Identity Management (User Service) from Core Logic (Feature Service).
+*   **Secure by Design**: Implements **Role-Based Access Control (RBAC)** and **JWT Authentication** to secure API endpoints.
+*   **Data Isolation**: Multi-tenant style architecture ensuring users only access their own data.
+*   **Modern Dashboard**: A responsive React + Vite frontend with Dark/Light mode support for easy management.
+*   **RESTful API**: Fully documented APIs allowing easy integration into other applications or SDKs.
+
+---
+
+## 💻 Tech Stack
+
+This project leverages the latest industry-standard technologies to ensure performance, security, and maintainability:
+
+### Backend
+*   **Language**: Java 21 (LTS)
+*   **Framework**: Spring Boot 3.2.x
+*   **Security**: Spring Security 6 (Stateless JWT Authentication)
+*   **Database**: PostgreSQL 16
+*   **ORM**: Hibernate / Spring Data JPA
+*   **Build Tool**: Maven (Multi-Module Monorepo)
+*   **Validation**: Jakarta Validation (Hibernate Validator)
+
+### Frontend
+*   **Framework**: React 18
+*   **Build Tool**: Vite
+*   **Styling**: CSS Modules with Dark/Light Theme support
+*   **HTTP Client**: Axios
+*   **Development**: Leveraged AI-assisted development tools to accelerate UI prototyping and implementation, demonstrating proficiency in integrating modern workflows.
 
 ---
 
@@ -133,10 +165,10 @@ If you want to use FeatureFlow in your own applications (e.g., an SDK), use thes
 
 ## 🔮 Areas to Improve / Roadmap
 
-I am constantly working to make FeatureFlow better. Here are some key areas we plan to tackle next:
+We are constantly working to make FeatureFlow better. Here are some key areas we plan to tackle next:
 
 1.  **📦 Client SDKs**:
-    *   Create a **Java SDK** (Maven library) so developers can simply add `featureflow-client` to their `pom.xml` and use annotations like `@FeatureFlag`.
+    *   Create a **Java SDK** (Maven library) so developers can simply add `featureflow-client` to their `pom.xml` and use annotations like `@FeatureFlag("dark_mode")`.
     *   Create a **JavaScript/React SDK** for easier frontend integration.
 
 2.  **⚡ Caching & Performance**:
