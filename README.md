@@ -20,7 +20,7 @@ This project leverages the latest industry-standard technologies to ensure perfo
 
 ### Backend
 *   **Language**: Java 21 (LTS)
-*   **Framework**: Spring Boot 3.2.x
+ *   **Framework**: Spring Boot 4.0.1
 *   **Security**: Spring Security 6 (Stateless JWT Authentication)
 *   **Database**: PostgreSQL 16
 *   **ORM**: Hibernate / Spring Data JPA
