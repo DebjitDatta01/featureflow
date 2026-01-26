@@ -36,3 +36,10 @@ build/
 .mvn/
 mvnw.cmd
 mvnw
+
+### Frontend ###
+node_modules/
+dist/
+.env
+.DS_Store
+coverage/

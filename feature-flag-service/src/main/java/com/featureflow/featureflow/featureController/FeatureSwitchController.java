@@ -33,7 +33,12 @@ public class FeatureSwitchController {
 
     @GetMapping
     public ResponseEntity<List<FeatureFlag>> getAllFeatureFlags(){
-        return ResponseEntity.ok(featureService.getAllFeatureFlags());
+        // Extract userId from the JWT token
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserId = authentication.getPrincipal().toString();
+        
+        // Pass userId to service to filter results
+        return ResponseEntity.ok(featureService.getAllFeatureFlags(currentUserId));
     }
 
     @DeleteMapping("/{id}")

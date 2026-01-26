@@ -21,8 +21,9 @@ public class FeatureService {
         return featureFlag.getValue();
     }
 
-    public List<FeatureFlag> getAllFeatureFlags(){
-        return featureDAO.findAll();
+    // Updated to filter by ownerId
+    public List<FeatureFlag> getAllFeatureFlags(String ownerId){
+        return featureDAO.findAllByOwnerId(ownerId);
     }
 
     public void deleteFeatureFlag(Long id){
