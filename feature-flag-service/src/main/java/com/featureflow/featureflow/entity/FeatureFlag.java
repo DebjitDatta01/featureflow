@@ -9,22 +9,30 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "feature_flags", indexes = @Index(columnList = "ownerId"))
 public class FeatureFlag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+
+    @Column(nullable = false)
     private String name;
-    @Column
+
+    @Column(nullable = false)
     private Boolean value;
 
-    public FeatureFlag(String name){
+    @Column(nullable = false)
+    private String ownerId; // Stores the UUID or Username from the User Service
+
+    public FeatureFlag(String name, String ownerId){
         this.name = name;
         this.value = false;
+        this.ownerId = ownerId;
     }
 
-    public FeatureFlag(String name, Boolean value) {
+    public FeatureFlag(String name, Boolean value, String ownerId) {
         this.name = name;
         this.value = value;
+        this.ownerId = ownerId;
     }
 }

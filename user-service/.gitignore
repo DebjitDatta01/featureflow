@@ -2,7 +2,7 @@ HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-!feature-flag-service/src/test/**/target/
+!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -26,13 +26,8 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-!feature-flag-service/src/main/**/build/
-!feature-flag-service/src/test/**/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### VS Code ###
 .vscode/
-
-.gitattributes
-.mvn/
-mvnw.cmd
-mvnw

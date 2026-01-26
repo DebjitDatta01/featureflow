@@ -6,5 +6,6 @@ public record FeatureFlagRequest (
         Long id,
         @NotBlank(message = "Flag name cannot be empty")
         String name,
-        Boolean value)
+        Boolean value,
+        String ownerId)
 {}

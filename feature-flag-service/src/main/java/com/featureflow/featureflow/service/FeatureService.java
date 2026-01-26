@@ -32,13 +32,13 @@ public class FeatureService {
         featureDAO.deleteById(id);
     }
 
-    public void createFeatureFlag(String name){
-        FeatureFlag featureFlag = new FeatureFlag(name);
+    public void createFeatureFlag(String name, String ownerId){
+        FeatureFlag featureFlag = new FeatureFlag(name, ownerId);
         featureDAO.save(featureFlag);
     }
 
-    public void createFeatureFlag(String name, Boolean value){
-        FeatureFlag featureFlag = new FeatureFlag(name, value != null ? value : false);
+    public void createFeatureFlag(String name, Boolean value, String ownerId){
+        FeatureFlag featureFlag = new FeatureFlag(name, value != null ? value : false, ownerId);
         featureDAO.save(featureFlag);
     }
 
