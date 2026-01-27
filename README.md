@@ -2,7 +2,7 @@
 
 **FeatureFlow** is a robust, distributed **Feature Flag Management System** designed to decouple feature deployment from code releases. It empowers developers to toggle features on/off in real-time, perform canary releases, and manage technical debt without redeploying applications.
 
-Built with a **Microservices Architecture** using **Java 21** and **Spring Boot 3**, FeatureFlow prioritizes security, scalability, and developer experience. It features a secure, stateless authentication system using **JWT**, ensuring strict data isolation where users can only manage their own feature flags.
+Built with a **Microservices Architecture** using **Java 21** and **Spring Boot 4**, FeatureFlow prioritizes security, scalability, and developer experience. It features a secure, stateless authentication system using **JWT**, ensuring strict data isolation where users can only manage their own feature flags.
 
 ### 🌟 Key Features
 *   **Real-time Toggling**: Switch features on/off instantly across your entire stack.
